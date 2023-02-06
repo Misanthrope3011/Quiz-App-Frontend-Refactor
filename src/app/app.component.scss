@@ -1,0 +1,31 @@
+h1 {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  
+  button {
+    padding: 0.5em 1em;
+    font-size: 1.2em;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: darkgreen;
+  }
+
+  p {
+    text-align: center;
+    color: red;
+    background-color: rebeccapurple;
+  }
+
+  .container {
+    text-align: center;
+    color: red;
+    background-color: rebeccapurple;
+  }
