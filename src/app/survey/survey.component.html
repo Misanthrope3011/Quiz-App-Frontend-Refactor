@@ -1,5 +1,15 @@
-"<p>tutaj sie zaczyna zabawa</p>\
-  Masz przed sobą pytania, powodzenia 
 
-  <a [routerLink]="['/survey', 1]">Kliknij by rozpoczac</a>
+<ng-template [ngIf] = "hideStartPopup == false" [ngIfElse] = "survey">
+    <p>tutaj sie zaczyna zabawa</p>
+    Masz przed sobą pytania, powodzenia
+    <a [routerLink]="['/survey', 1]"  >Kliknij by rozpoczac</a>
+</ng-template>
+
+<ng-template #survey>
+  Pytanie {{content?.question}}
+  OdpowiedzA: {{content?.answerA}}
+  OdpowiedzB: {{content?.answerB}}
+  OdpowiedzC: {{content?.answerC}}
+  OdpowiedzD: {{content?.answerD}}
+</ng-template>
 

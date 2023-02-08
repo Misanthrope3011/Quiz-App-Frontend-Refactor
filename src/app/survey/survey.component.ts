@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import { RequestProcessorService } from '../request-processor.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
 import { Question } from '../Question';
 
 @Component({
@@ -11,17 +11,24 @@ import { Question } from '../Question';
 export class SurveyComponent implements OnInit {
 
   content: Question | undefined;
-  
-  constructor(private requestProcessorService: RequestProcessorService, private activatedRoute: ActivatedRoute) {
+  hideStartPopup = false;
+
+  constructor(private requestProcessorService: RequestProcessorService, private activatedRoute: ActivatedRoute, private router: Router) {
       activatedRoute.params.subscribe(err => {
-        const id = activatedRoute.snapshot.url[activatedRoute.snapshot.url.length - 1].path
-        console.log(Number(id))
+        this.hideStartPopup = true;
+        const id = activatedRoute.snapshot.url[activatedRoute.snapshot.url.length - 1].path;
         if(Number(id)) {
-          console.log(this.requestProcessorService.getPayload()[id]);
+          this.content = this.requestProcessorService.getPayload()[id];
+        } else if(id == "start") {
+          this.hideStartPopup = false;
         }
       });
     }
 
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification($event: any) {
+      $event.returnValue = true;
+  }
 
   ngOnInit(): void {
     this.content = this.requestProcessorService.getPayload();
