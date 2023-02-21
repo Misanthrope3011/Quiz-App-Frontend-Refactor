@@ -1,4 +1,61 @@
-h2 {
-    text-align: center;
+body {
+  font-family: Arial, sans-serif;
+}
 
+/* Style the top container for the image */
+.image-container {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Style the image */
+.quiz-image {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Style the answer choices */
+.answer-choices {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Style the answer choice buttons */
+.answer-choice-button {
+  width: 200px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: lightblue;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Style the navigation buttons */
+.nav-buttons {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.nav-button {
+  width: 100px;
+  padding: 10px;
+  margin: 0 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: lightgray;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.question {
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
 }

@@ -5,11 +5,29 @@
     <a [routerLink]="['/survey', 1]"  >Kliknij by rozpoczac</a>
 </ng-template>
 
-<ng-template #survey>
   Pytanie {{content?.question}}
-  OdpowiedzA: {{content?.answerA}}
-  OdpowiedzB: {{content?.answerB}}
-  OdpowiedzC: {{content?.answerC}}
-  OdpowiedzD: {{content?.answerD}}
-</ng-template>
+<ng-template #survey>
 
+<div class="image-container">
+  <img class="quiz-image" src="https://via.placeholder.com/300x300" alt="Quiz Image">
+</div>
+hat
+  <div class="question">
+    {{content?.question}}
+  </div>
+
+<!-- The answer choices -->
+<div class="answer-choices">
+  OdpowiedzA:  <button class="answer-choice-button" (click) = "highlightAnswer($event)">  {{content?.answerA}}</button>
+  OdpowiedzB:  <button class="answer-choice-button" (click) = "highlightAnswer($event)">{{content?.answerB}} </button>
+  OdpowiedzC:  <button class="answer-choice-button" (click) = "highlightAnswer($event)">  {{content?.answerC}} </button>
+  OdpowiedzD:  <button class="answer-choice-button" (click) = "highlightAnswer($event)">    {{content?.answerD}}</button>
+</div>
+
+<!-- The navigation buttons -->
+<div class="nav-buttons">
+  <button class="nav-button" (click)="selectedAnswerChoiceButton($event)" >Previous</button>
+  <button class="nav-button" (click)="onClickNextButton($event)">Next</button>
+</div>
+
+</ng-template>
