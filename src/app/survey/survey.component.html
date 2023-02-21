@@ -1,11 +1,9 @@
-
 <ng-template [ngIf] = "hideStartPopup == false" [ngIfElse] = "survey">
     <p>tutaj sie zaczyna zabawa</p>
     Masz przed sobą pytania, powodzenia
     <a [routerLink]="['/survey', 1]"  >Kliknij by rozpoczac</a>
 </ng-template>
 
-  Pytanie {{content?.question}}
 <ng-template #survey>
 
 <div class="image-container">
@@ -13,15 +11,15 @@
 </div>
 hat
   <div class="question">
-    {{content?.question}}
+    {{content.question}}
   </div>
 
 <!-- The answer choices -->
 <div class="answer-choices">
-  OdpowiedzA:  <button class="answer-choice-button" (click) = "highlightAnswer($event)">  {{content?.answerA}}</button>
-  OdpowiedzB:  <button class="answer-choice-button" (click) = "highlightAnswer($event)">{{content?.answerB}} </button>
-  OdpowiedzC:  <button class="answer-choice-button" (click) = "highlightAnswer($event)">  {{content?.answerC}} </button>
-  OdpowiedzD:  <button class="answer-choice-button" (click) = "highlightAnswer($event)">    {{content?.answerD}}</button>
+  OdpowiedzA:  <button class="answer-choice-button" (click) = "highlightAnswer($event)" value= {{content.answerA}}>  {{content.answerA}}</button>
+  OdpowiedzB:  <button class="answer-choice-button" (click) = "highlightAnswer($event)" value= {{content.answerB}}>  {{content.answerB}} </button>
+  OdpowiedzC:  <button class="answer-choice-button" (click) = "highlightAnswer($event)" value= {{content.answerC}}>  {{content.answerC}} </button>
+  OdpowiedzD:  <button class="answer-choice-button" (click) = "highlightAnswer($event)" value= {{content.answerD}}>  {{content.answerD}}</button>
 </div>
 
 <!-- The navigation buttons -->
@@ -30,4 +28,8 @@ hat
   <button class="nav-button" (click)="onClickNextButton($event)">Next</button>
 </div>
 
+</ng-template>
+
+<ng-template [ngIf] = "submitButtonAppear == true" >
+  <button class="answer-choice-button" (click) = "highlightAnswer($event)" [routerLink]="['/submit']"> submit </button>
 </ng-template>

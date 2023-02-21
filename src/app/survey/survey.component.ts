@@ -10,10 +10,12 @@ import { Question } from '../Question';
 })
 export class SurveyComponent implements OnInit {
 
-  content: Question | undefined;
+  arrayContent: Question[] = [];
+  content: Question = new Question();
   hideStartPopup = false;
   routeId: number;
   answers: string[];
+  submitButtonAppear: boolean = false;
 
   constructor(private requestProcessorService: RequestProcessorService, private activatedRoute: ActivatedRoute, private router: Router) {
       activatedRoute.params.subscribe(err => {
@@ -21,7 +23,7 @@ export class SurveyComponent implements OnInit {
         const id = activatedRoute.snapshot.url[activatedRoute.snapshot.url.length - 1].path;
         if(Number(id)) {
           this.routeId = Number.parseInt(id);
-          this.content = this.requestProcessorService.getPayload()[this.routeId - 1];
+          this.content = this.arrayContent[this.routeId - 1];
           console.log(this.routeId)
         } else if(id == "start") {
           this.hideStartPopup = false;
@@ -37,25 +39,29 @@ export class SurveyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.content = this.requestProcessorService.getPayload();
+    this.arrayContent = this.requestProcessorService.getPayload();
   }
+
   selectedAnswerChoiceButton($event: MouseEvent) {
-    $event.stopPropagation(); // add this line
-    this.routeId = this.routeId > 0 ?  this.routeId - 1 : 1;
+    this.routeId = this.routeId > 1 ?  this.routeId - 1 : 1;
     this.router.navigate(['/survey/',  this.routeId]);
   }
 
   onClickNextButton($event) {
-    $event.stopPropagation(); // add this line
-    this.routeId = this.routeId + 1;
-   console.log("Clicked" +  this.routeId)
-   this.router.navigate(['/survey/',  this.routeId]);
+  if(this.routeId == this.arrayContent.length) {
+    this.submitButtonAppear = true;
+    console.log(this.arrayContent)
+  } else {
+     this.routeId = this.routeId + 1;
+     console.log("Clicked" +  this.routeId)
+     this.router.navigate(['/survey/',  this.routeId]);
+   }
+
   }
 
   highlightAnswer($event) {
-    const button = $event.target.innerHTML;
-    console.log(button);
-
+    const value = $event.target.value;
+    this.arrayContent[this.routeId - 1].answer = value;
   }
 
 }

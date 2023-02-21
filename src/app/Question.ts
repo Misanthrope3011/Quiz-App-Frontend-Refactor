@@ -1,4 +1,4 @@
-export interface Question {
+export class Question {
     answerA: string;
     answerB: string;
     answerC: string;
