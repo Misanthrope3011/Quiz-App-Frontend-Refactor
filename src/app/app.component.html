@@ -66,15 +66,6 @@
     opacity: 0.8;
   }
 
-  .content {
-    display: flex;
-    margin: 65px auto 32px;
-    padding: 0 16px;
-    max-width: 960px;
-    flex-direction: column;
-    align-items: center;
-  }
-
   svg.material-icons {
     height: 24px;
     width: auto;
@@ -311,12 +302,7 @@
   />
 
 </div>
-
-<div class="content" role="main">
-  <h2>Welcome to survey app!</h2>
-  <button (click)="startSurvey()">Start Survey</button>
-</div>
-
+<router-outlet></router-outlet>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
@@ -325,5 +311,3 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<router-outlet></router-outlet>

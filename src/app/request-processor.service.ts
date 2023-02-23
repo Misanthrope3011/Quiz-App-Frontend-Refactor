@@ -20,6 +20,14 @@ export class RequestProcessorService {
     return this.http.post<Question[]>(ApplicationConstants.BASE_URL + "/generateSurvey", JSON.stringify({category: "INNE", size: 10}), options);
   }
 
+   public sendQuestionAddRequest(question: Question) {
+     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+     const options = { headers };
+
+      return this.http.post<Question>(ApplicationConstants.BASE_URL + "/question/add", JSON.stringify(question), options);
+   }
+
+
   public getPayload(): any {
     return this.payload;
   }

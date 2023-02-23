@@ -1,11 +1,3 @@
-<ng-template [ngIf] = "hideStartPopup == false" [ngIfElse] = "survey">
-    <p>tutaj sie zaczyna zabawa</p>
-    Masz przed sobą pytania, powodzenia
-    <a [routerLink]="['/survey', 1]"  >Kliknij by rozpoczac</a>
-</ng-template>
-
-<ng-template #survey>
-
 <div class="image-container">
   <img class="quiz-image" src="https://via.placeholder.com/300x300" alt="Quiz Image">
 </div>
@@ -24,12 +16,11 @@ hat
 
 <!-- The navigation buttons -->
 <div class="nav-buttons">
-  <button class="nav-button" (click)="selectedAnswerChoiceButton($event)" >Previous</button>
   <button class="nav-button" (click)="onClickNextButton($event)">Next</button>
 </div>
-
-</ng-template>
 
 <ng-template [ngIf] = "submitButtonAppear == true" >
   <button class="answer-choice-button" (click) = "highlightAnswer($event)" [routerLink]="['/submit']"> submit </button>
 </ng-template>
+
+

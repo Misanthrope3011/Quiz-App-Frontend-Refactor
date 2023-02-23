@@ -12,21 +12,17 @@ export class SurveyComponent implements OnInit {
 
   arrayContent: Question[] = [];
   content: Question = new Question();
-  hideStartPopup = false;
   routeId: number;
   answers: string[];
   submitButtonAppear: boolean = false;
 
   constructor(private requestProcessorService: RequestProcessorService, private activatedRoute: ActivatedRoute, private router: Router) {
       activatedRoute.params.subscribe(err => {
-        this.hideStartPopup = true;
         const id = activatedRoute.snapshot.url[activatedRoute.snapshot.url.length - 1].path;
         if(Number(id)) {
           this.routeId = Number.parseInt(id);
           this.content = this.arrayContent[this.routeId - 1];
           console.log(this.routeId)
-        } else if(id == "start") {
-          this.hideStartPopup = false;
         }
       });
     }

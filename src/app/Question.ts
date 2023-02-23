@@ -4,7 +4,7 @@ export class Question {
     answerC: string;
     answerD: string;
     question: string;
-    category: string;
+    categoryParser: string;
     image: string;
     answer: string;
 }

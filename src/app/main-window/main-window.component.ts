@@ -1,0 +1,34 @@
+import { Component } from '@angular/core';
+import { RequestProcessorService } from '../request-processor.service';
+import {Router} from '@angular/router';
+import {Question} from '../Question';
+import { timer } from 'rxjs';
+
+@Component({
+  selector: 'app-main-window',
+  templateUrl: './main-window.component.html',
+  styleUrls: ['./main-window.component.scss']
+})
+export class MainWindowComponent {
+
+  hideStartPopup = false;
+
+  startSurvey() {
+    this.hideStartPopup = true;
+    this.showMessageSuccess();
+    this.requestProcessor.submitSurvey().subscribe(response => {
+    this.requestProcessor.setPayload(response);
+   });
+  }
+
+   showMessageSuccess(){
+   timer(3000).subscribe(err => this.router.navigate(['/survey/1']));
+  }
+
+  content: Question[] = [];
+
+  constructor(private requestProcessor: RequestProcessorService, private router: Router) {
+
+  }
+
+}
