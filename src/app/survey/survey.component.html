@@ -6,6 +6,9 @@ hat
     {{content.question}}
   </div>
 
+
+<app-timer [answerTime] = content.answerTimeSec  (timeCounter)="redirectToNew($event)"> </app-timer>
+
 <!-- The answer choices -->
 <div class="answer-choices">
   OdpowiedzA:  <button class="answer-choice-button" (click) = "highlightAnswer($event)" value= {{content.answerA}}>  {{content.answerA}}</button>

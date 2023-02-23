@@ -7,4 +7,5 @@ export class Question {
     categoryParser: string;
     image: string;
     answer: string;
+    answerTimeSec: number;
 }

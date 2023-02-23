@@ -34,8 +34,17 @@ export class SurveyComponent implements OnInit {
 
   }
 
+  redirectToNew($event) {
+  if(this.routeId != this.arrayContent.length) {
+      this.router.navigate(['/survey/',  ++this.routeId]);
+    } else {
+        this.submitButtonAppear = true;
+    }
+  }
+
   ngOnInit(): void {
     this.arrayContent = this.requestProcessorService.getPayload();
+    console.log(this.arrayContent)
   }
 
   selectedAnswerChoiceButton($event: MouseEvent) {
@@ -46,7 +55,6 @@ export class SurveyComponent implements OnInit {
   onClickNextButton($event) {
   if(this.routeId == this.arrayContent.length) {
     this.submitButtonAppear = true;
-    console.log(this.arrayContent)
   } else {
      this.routeId = this.routeId + 1;
      console.log("Clicked" +  this.routeId)
