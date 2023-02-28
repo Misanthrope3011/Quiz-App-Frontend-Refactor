@@ -10,6 +10,7 @@ import {RequestProcessorService} from '../request-processor.service'
 export class QuestionFormComponent {
 
   constructor(private requestProcessorService: RequestProcessorService) {
+
   }
 
   question: Question = new Question();

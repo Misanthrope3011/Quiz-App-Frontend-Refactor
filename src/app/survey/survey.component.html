@@ -23,7 +23,8 @@ hat
 </div>
 
 <ng-template [ngIf] = "submitButtonAppear == true" >
-  <button class="answer-choice-button" (click) = "highlightAnswer($event)" [routerLink]="['/submit']"> submit </button>
+  <button class="answer-choice-button" (click) = "submitAnswers($event)" [routerLink]="['/submit']"> submit </button>
 </ng-template>
+{{messageResponse}}
 
 

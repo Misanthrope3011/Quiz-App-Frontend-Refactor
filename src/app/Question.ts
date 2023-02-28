@@ -4,8 +4,9 @@ export class Question {
     answerC: string;
     answerD: string;
     question: string;
+    correctAnswer: string;
     categoryParser: string;
     image: string;
-    answer: string;
+    userAnswer: string;
     answerTimeSec: number;
 }

@@ -15,6 +15,7 @@ export class SurveyComponent implements OnInit {
   routeId: number;
   answers: string[];
   submitButtonAppear: boolean = false;
+  messageResponse: string;
 
   constructor(private requestProcessorService: RequestProcessorService, private activatedRoute: ActivatedRoute, private router: Router) {
       activatedRoute.params.subscribe(err => {
@@ -53,6 +54,7 @@ export class SurveyComponent implements OnInit {
   }
 
   onClickNextButton($event) {
+  console.log(this.arrayContent)
   if(this.routeId == this.arrayContent.length) {
     this.submitButtonAppear = true;
   } else {
@@ -65,7 +67,30 @@ export class SurveyComponent implements OnInit {
 
   highlightAnswer($event) {
     const value = $event.target.value;
-    this.arrayContent[this.routeId - 1].answer = value;
+    this.arrayContent[this.routeId - 1].userAnswer = value;
   }
 
+   submitAnswers($event) {
+      this.requestProcessorService.submitAnswers(this.arrayContent)
+      .subscribe(success => this.messageResponse = success.toString(), err => this.messageResponse = err.error.text);
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
