@@ -9,6 +9,7 @@ import { QuestionFormComponent } from './question-form/question-form.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { MainWindowComponent } from './main-window/main-window.component';
 import { TimerComponent } from './timer/timer.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TimerComponent } from './timer/timer.component';
     QuestionFormComponent,
     RegistrationComponent,
     MainWindowComponent,
-    TimerComponent
+    TimerComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

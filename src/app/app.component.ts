@@ -1,7 +1,7 @@
 import { Component, ɵɵsetComponentScope } from '@angular/core';
 import { RequestProcessorService } from './request-processor.service';
 import {Router} from '@angular/router';
-import {Question} from './Question';
+import {Question} from './models/Question';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +11,6 @@ import {Question} from './Question';
 export class AppComponent {
 
   title = 'Survey_New';
-
-
 
 }
 

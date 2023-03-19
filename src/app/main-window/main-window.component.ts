@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RequestProcessorService } from '../request-processor.service';
 import {Router} from '@angular/router';
-import {Question} from '../Question';
+import {Question} from '../models/Question';
 import { timer } from 'rxjs';
 
 @Component({

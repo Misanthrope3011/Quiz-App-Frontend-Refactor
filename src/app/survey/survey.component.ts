@@ -1,7 +1,7 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
 import { RequestProcessorService } from '../request-processor.service';
 import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
-import { Question } from '../Question';
+import { Question } from '../models/Question';
 
 @Component({
   selector: 'app-survey',

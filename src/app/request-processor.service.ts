@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { ApplicationConstants } from 'src/ApplicationConstants';
 import { Router } from '@angular/router';
-import { Question } from './Question';
+import { Question } from './models/Question';
+import {User} from './models/User';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,12 @@ export class RequestProcessorService {
   };
 
   payload: any;
+
+
+  public signUp(user: User) {
+    console.log(user);
+    return this.http.post<Question[]>(ApplicationConstants.BASE_URL + "/register", JSON.stringify(user), this.postOptions);
+  }
 
   public submitSurvey() {
     return this.http.post<Question[]>(ApplicationConstants.BASE_URL + "/generateSurvey", JSON.stringify({category: "INNE", size: 10}), this.postOptions);

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Question } from '../Question';
+import { Question } from '../models/Question';
 import {RequestProcessorService} from '../request-processor.service'
 
 @Component({
