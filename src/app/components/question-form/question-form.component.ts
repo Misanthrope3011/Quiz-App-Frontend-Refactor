@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Question } from '../models/Question';
-import {RequestProcessorService} from '../request-processor.service'
+import { Question } from '../../models/Question';
+import {AuthRequestsService} from '../../services/auth-requests-service'
 
 @Component({
   selector: 'app-question-form',
@@ -9,7 +9,7 @@ import {RequestProcessorService} from '../request-processor.service'
 })
 export class QuestionFormComponent {
 
-  constructor(private requestProcessorService: RequestProcessorService) {
+  constructor(private requestProcessorService: AuthRequestsService) {
 
   }
 

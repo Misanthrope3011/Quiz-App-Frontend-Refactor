@@ -1,33 +1,28 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { ApplicationConstants } from 'src/ApplicationConstants';
-import { Router } from '@angular/router';
-import { Question } from './models/Question';
-import {User} from './models/User';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {ApplicationConstants} from 'src/ApplicationConstants';
+import {Router} from '@angular/router';
+import {Question} from '../models/Question';
+import {CookiesService} from "./cookies.service";
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class RequestProcessorService {
+export class AuthRequestsService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  payload: any;
 
   private postOptions: Object = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.cookieService.getToken()
     }),
     params: new HttpParams(),
     responseType: 'json'
   };
 
-  payload: any;
-
-
-  public signUp(user: User) {
-    console.log(user);
-    return this.http.post<Question[]>(ApplicationConstants.BASE_URL + "/register", JSON.stringify(user), this.postOptions);
-  }
+  constructor(private http: HttpClient, private router: Router, private cookieService: CookiesService) { }
 
   public submitSurvey() {
     return this.http.post<Question[]>(ApplicationConstants.BASE_URL + "/generateSurvey", JSON.stringify({category: "INNE", size: 10}), this.postOptions);

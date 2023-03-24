@@ -1,7 +1,4 @@
-import { Component, ɵɵsetComponentScope } from '@angular/core';
-import { RequestProcessorService } from './request-processor.service';
-import {Router} from '@angular/router';
-import {Question} from './models/Question';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',

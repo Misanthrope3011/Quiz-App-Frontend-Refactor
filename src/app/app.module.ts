@@ -4,12 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SurveyComponent } from './survey/survey.component';
-import { QuestionFormComponent } from './question-form/question-form.component';
-import { RegistrationComponent } from './registration/registration.component';
-import { MainWindowComponent } from './main-window/main-window.component';
-import { TimerComponent } from './timer/timer.component';
-import { SignupComponent } from './signup/signup.component';
+import { SurveyComponent } from './components/survey/survey.component';
+import { QuestionFormComponent } from './components/question-form/question-form.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { MainWindowComponent } from './components/main-window/main-window.component';
+import { TimerComponent } from './components/timer/timer.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { PopupComponent } from './components/popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SignupComponent } from './signup/signup.component';
     RegistrationComponent,
     MainWindowComponent,
     TimerComponent,
-    SignupComponent
+    SignupComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,

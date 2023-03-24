@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {OnChanges} from '@angular/core';
-import { RequestProcessorService } from '../request-processor.service';
 import { Input } from '@angular/core'; // First, import Input
 import { timer } from 'rxjs';
 import {tap,  map, takeWhile } from 'rxjs/operators';

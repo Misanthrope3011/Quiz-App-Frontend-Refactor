@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { RequestProcessorService } from '../request-processor.service';
+import { AuthRequestsService } from '../../services/auth-requests-service';
 import {Router} from '@angular/router';
-import {Question} from '../models/Question';
+import {Question} from '../../models/Question';
 import { timer } from 'rxjs';
 
 @Component({
@@ -27,7 +27,7 @@ export class MainWindowComponent {
 
   content: Question[] = [];
 
-  constructor(private requestProcessor: RequestProcessorService, private router: Router) {
+  constructor(private requestProcessor: AuthRequestsService, private router: Router) {
 
   }
 
