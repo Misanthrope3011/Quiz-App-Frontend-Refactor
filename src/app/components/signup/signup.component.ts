@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {User} from "../../models/User";
-import {AuthRequestsService} from "../../services/auth-requests-service";
+import {QuizRequestsService} from "../../services/quiz-requests.service";
 import {CookiesService} from "../../services/cookies.service";
-import {UserAuthService} from "../../services/user-auth.service";
+import {AuthRequestsService} from "../../services/auth-requests.service";
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +11,7 @@ import {UserAuthService} from "../../services/user-auth.service";
 })
 export class SignupComponent {
 
-  constructor(private requestProcessorService: AuthRequestsService, private cookieService: CookiesService, private userAuthService: UserAuthService) {
+  constructor(private requestProcessorService: AuthRequestsService, private cookieService: CookiesService, private userAuthService: AuthRequestsService) {
   }
 
   user: User = new User();

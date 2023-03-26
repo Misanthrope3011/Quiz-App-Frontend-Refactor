@@ -5,11 +5,13 @@ import { QuestionFormComponent } from './components/question-form/question-form.
 import { MainWindowComponent } from './components/main-window/main-window.component'
 import { RegistrationComponent } from './components/registration/registration.component'
 import {SignupComponent} from "./components/signup/signup.component";
+import {AddCategoryComponent} from "./add-category/add-category.component";
 
 const routes: Routes = [
   {path: '', component: MainWindowComponent},
   {path: 'survey/:id', component: SurveyComponent},
   {path: 'question/add', component: QuestionFormComponent},
+  {path: 'category/add', component: AddCategoryComponent},
   {path: 'signup', component: RegistrationComponent},
   {path: 'signin', component: SignupComponent}
 ];

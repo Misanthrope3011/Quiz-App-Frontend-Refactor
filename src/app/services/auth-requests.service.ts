@@ -7,7 +7,7 @@ import {ApplicationConstants} from "../../ApplicationConstants";
 @Injectable({
   providedIn: 'root'
 })
-export class UserAuthService {
+export class AuthRequestsService {
 
   private postOptions: Object = {
     headers: new HttpHeaders({

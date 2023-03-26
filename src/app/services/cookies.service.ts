@@ -20,10 +20,12 @@ export class CookiesService {
   }
 
   public getToken() {
-    const userCookie = JSON.parse(this.cookieService.get(this.USER_COOKIE_NAME));
-
-    if (userCookie !== null) {
-      this.USER_TOKEN = userCookie.token;
+    const userCookie = this.cookieService.get(this.USER_COOKIE_NAME);
+    if (userCookie !== null && userCookie.length !== 0) {
+      let usertoken = JSON.parse(userCookie).token;
+      if(usertoken !== null) {
+        this.USER_TOKEN = usertoken;
+      }
     }
     return this.USER_TOKEN;
   }

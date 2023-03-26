@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthRequestsService } from '../../services/auth-requests-service';
+import { QuizRequestsService } from '../../services/quiz-requests.service';
 import {Router} from '@angular/router';
 import {Question} from '../../models/Question';
 import { timer } from 'rxjs';
@@ -27,7 +27,7 @@ export class MainWindowComponent {
 
   content: Question[] = [];
 
-  constructor(private requestProcessor: AuthRequestsService, private router: Router) {
+  constructor(private requestProcessor: QuizRequestsService, private router: Router) {
 
   }
 
