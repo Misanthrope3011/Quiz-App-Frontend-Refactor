@@ -11,7 +11,7 @@ import { MainWindowComponent } from './components/main-window/main-window.compon
 import { TimerComponent } from './components/timer/timer.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { PopupComponent } from './components/popup/popup.component';
-import {AddCategoryComponent} from "./add-category/add-category.component";
+import {AddCategoryComponent} from "./components/add-category/add-category.component";
 import {AuthGuardService} from "./services/authguard.service";
 
 @NgModule({

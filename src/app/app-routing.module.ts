@@ -5,7 +5,7 @@ import { QuestionFormComponent } from './components/question-form/question-form.
 import { MainWindowComponent } from './components/main-window/main-window.component'
 import { RegistrationComponent } from './components/registration/registration.component'
 import {SignupComponent} from "./components/signup/signup.component";
-import {AddCategoryComponent} from "./add-category/add-category.component";
+import {AddCategoryComponent} from "./components/add-category/add-category.component";
 import {AuthGuardService} from "./services/authguard.service";
 
 const routes: Routes = [

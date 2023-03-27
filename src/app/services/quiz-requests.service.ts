@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {Question} from '../models/Question';
 import {CookiesService} from "./cookies.service";
 import {Category} from "../models/Category";
+import {QuizConfig} from "../models/QuizConfig";
 
 
 @Injectable({
@@ -29,7 +30,7 @@ export class QuizRequestsService {
     return this.http.get<Category[]>(ApplicationConstants.BASE_URL + "/admin/categories", this.postOptions);
   }
 
-  public submitSurvey(category: Category) {
+  public submitSurvey(category: QuizConfig) {
     return this.http.post<Question[]>(ApplicationConstants.BASE_URL + "/user/generateSurvey", JSON.stringify(category), this.postOptions);
   }
 

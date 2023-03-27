@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {Question} from '../../models/Question';
 import {timer} from 'rxjs';
 import {Category} from "../../models/Category";
+import {QuizConfig} from "../../models/QuizConfig";
 
 @Component({
   selector: 'app-main-window',
@@ -15,15 +16,16 @@ export class MainWindowComponent implements OnInit {
   content: Question[] = [];
   hideStartPopup = false;
   categories: Category[];
+  quizConfig: QuizConfig = new QuizConfig();
 
   constructor(private requestProcessor: QuizRequestsService, private router: Router) {
   }
 
-  startSurvey() {
+  startSurvey(config: QuizConfig) {
     this.hideStartPopup = true;
     this.showMessageSuccess();
-    const value = (Number)((<HTMLSelectElement>document.getElementById('categorySelect')).value);
-    this.requestProcessor.submitSurvey(this.categories[value]).subscribe(response => {
+    this.requestProcessor.submitSurvey(config).subscribe(response => {
+      console.log(config);
       this.requestProcessor.setPayload(response);
     });
   }

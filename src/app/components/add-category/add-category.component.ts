@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
-import {Category} from "../models/Category";
-import {AuthRequestsService} from "../services/auth-requests.service";
-import {QuizRequestsService} from "../services/quiz-requests.service";
+import {Category} from "../../models/Category";
+import {QuizRequestsService} from "../../services/quiz-requests.service";
 
 @Component({
   selector: 'app-add-category',
