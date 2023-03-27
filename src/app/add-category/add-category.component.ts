@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Category} from "../models/Category";
 import {AuthRequestsService} from "../services/auth-requests.service";
 import {QuizRequestsService} from "../services/quiz-requests.service";

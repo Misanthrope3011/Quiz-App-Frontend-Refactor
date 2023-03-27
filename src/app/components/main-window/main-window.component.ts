@@ -10,7 +10,7 @@ import {Category} from "../../models/Category";
   templateUrl: './main-window.component.html',
   styleUrls: ['./main-window.component.scss']
 })
-export class MainWindowComponent implements OnInit{
+export class MainWindowComponent implements OnInit {
 
   content: Question[] = [];
   hideStartPopup = false;

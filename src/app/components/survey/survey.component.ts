@@ -17,7 +17,8 @@ export class SurveyComponent implements OnInit {
   submitButtonAppear: boolean = false;
   messageResponse: string;
 
-  constructor(private requestProcessorService: QuizRequestsService, private activatedRoute: ActivatedRoute, private router: Router) {}
+  constructor(private requestProcessorService: QuizRequestsService, private activatedRoute: ActivatedRoute, private router: Router) {
+  }
 
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
@@ -25,8 +26,8 @@ export class SurveyComponent implements OnInit {
   }
 
   redirectToNew($event) {
-  if(this.routeId != this.arrayContent.length) {
-      this.router.navigate(['/survey/',  ++this.routeId]);
+    if (this.routeId != this.arrayContent.length) {
+      this.router.navigate(['/survey/', ++this.routeId]);
     }
   }
 
@@ -34,10 +35,10 @@ export class SurveyComponent implements OnInit {
     this.arrayContent = this.requestProcessorService.getPayload();
     this.activatedRoute.params.subscribe(err => {
       const id = this.activatedRoute.snapshot.url[this.activatedRoute.snapshot.url.length - 1].path;
-      if(Number(id)) {
+      if (Number(id)) {
         this.routeId = Number.parseInt(id);
         this.content = this.arrayContent[this.routeId - 1];
-        if(this.routeId != this.arrayContent.length) {
+        if (this.routeId != this.arrayContent.length) {
           this.submitButtonAppear = true;
         }
       }
@@ -45,18 +46,18 @@ export class SurveyComponent implements OnInit {
   }
 
   selectedAnswerChoiceButton($event: MouseEvent) {
-    this.routeId = this.routeId > 1 ?  this.routeId - 1 : 1;
-    this.router.navigate(['/survey/',  this.routeId]);
+    this.routeId = this.routeId > 1 ? this.routeId - 1 : 1;
+    this.router.navigate(['/survey/', this.routeId]);
   }
 
   onClickNextButton($event) {
-  if(this.routeId == this.arrayContent.length) {
-    this.submitButtonAppear = true;
-  } else {
-     this.routeId = this.routeId + 1;
-     console.log("Clicked" +  this.routeId)
-     this.router.navigate(['/survey/',  this.routeId]);
-   }
+    if (this.routeId == this.arrayContent.length) {
+      this.submitButtonAppear = true;
+    } else {
+      this.routeId = this.routeId + 1;
+      console.log("Clicked" + this.routeId)
+      this.router.navigate(['/survey/', this.routeId]);
+    }
 
   }
 
@@ -64,12 +65,13 @@ export class SurveyComponent implements OnInit {
     this.arrayContent[this.routeId - 1].userAnswer = $event.target.value;
   }
 
-   submitAnswers($event) {
-      this.requestProcessorService.submitAnswers(this.arrayContent)
+  submitAnswers($event) {
+    this.requestProcessorService.submitAnswers(this.arrayContent)
       .subscribe({
-         next: (success) => this.messageResponse = success.toString(),
-         error: (err) => this.messageResponse = err.error.text});
-    }
+        next: (success) => this.messageResponse = success.toString(),
+        error: (err) => this.messageResponse = err.error.text
+      });
+  }
 
 }
 
