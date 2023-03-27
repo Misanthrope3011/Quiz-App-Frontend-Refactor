@@ -17,12 +17,14 @@
 </div>
 
 <!-- The navigation buttons -->
-<div class="nav-buttons">
-  <button class="nav-button" (click)="onClickNextButton($event)">Next</button>
-</div>
 
-<ng-template [ngIf] = "submitButtonAppear == true" >
+<ng-template [ngIf] = "submitButtonAppear == true" [ngIfElse]="nextButton">
   <button class="answer-choice-button" (click) = "submitAnswers($event)" [routerLink]="['/submit']"> submit </button>
+</ng-template>
+<ng-template #nextButton>
+  <div class="nav-buttons">
+    <button class="nav-button" (click)="onClickNextButton($event)">Next</button>
+  </div>
 </ng-template>
 {{messageResponse}}
 

@@ -1,3 +1,5 @@
+import {Role} from "./Role";
+
 export class User {
 
   username: string;
@@ -5,5 +7,6 @@ export class User {
   firstName: string;
   lastName: string;
   token: string;
+  roles: Role[];
 
 }

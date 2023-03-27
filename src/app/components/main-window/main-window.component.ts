@@ -1,34 +1,45 @@
-import { Component } from '@angular/core';
-import { QuizRequestsService } from '../../services/quiz-requests.service';
+import {Component, OnInit} from '@angular/core';
+import {QuizRequestsService} from '../../services/quiz-requests.service';
 import {Router} from '@angular/router';
 import {Question} from '../../models/Question';
-import { timer } from 'rxjs';
+import {timer} from 'rxjs';
+import {Category} from "../../models/Category";
 
 @Component({
   selector: 'app-main-window',
   templateUrl: './main-window.component.html',
   styleUrls: ['./main-window.component.scss']
 })
-export class MainWindowComponent {
+export class MainWindowComponent implements OnInit{
 
+  content: Question[] = [];
   hideStartPopup = false;
+  categories: Category[];
+
+  constructor(private requestProcessor: QuizRequestsService, private router: Router) {
+  }
 
   startSurvey() {
     this.hideStartPopup = true;
     this.showMessageSuccess();
-    this.requestProcessor.submitSurvey().subscribe(response => {
-    this.requestProcessor.setPayload(response);
-   });
+    const value = (Number)((<HTMLSelectElement>document.getElementById('categorySelect')).value);
+    this.requestProcessor.submitSurvey(this.categories[value]).subscribe(response => {
+      this.requestProcessor.setPayload(response);
+    });
   }
 
-   showMessageSuccess(){
-   timer(3000).subscribe(err => this.router.navigate(['/survey/1']));
+  ngOnInit() {
+    this.requestProcessor.getCategories().subscribe({
+      next: (value) => {
+        console.log(value)
+        this.categories = value;
+      },
+      error: err => console.log(err)
+    })
   }
 
-  content: Question[] = [];
-
-  constructor(private requestProcessor: QuizRequestsService, private router: Router) {
-
+  showMessageSuccess() {
+    timer(3000).subscribe(err => this.router.navigate(['/survey/1']));
   }
 
 }

@@ -1,6 +1,10 @@
 <div class="content" role="main">
   <h2>Welcome to survey app!</h2>
-  <button (click)="startSurvey()">Start Survey</button>
+  <h4>Wybierz kategorie cale te</h4>
+  <select class="form-select" id="categorySelect">
+  <option *ngFor="let category of categories; index as i" value="{{i}}"> {{category.name}} </option>
+  </select>
+  <button (click)="startSurvey()">Start Quiz</button>
 </div>
 
 <ng-template [ngIf] = "hideStartPopup == true">

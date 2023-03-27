@@ -3,6 +3,7 @@ import {User} from "../../models/User";
 import {QuizRequestsService} from "../../services/quiz-requests.service";
 import {CookiesService} from "../../services/cookies.service";
 import {AuthRequestsService} from "../../services/auth-requests.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +12,7 @@ import {AuthRequestsService} from "../../services/auth-requests.service";
 })
 export class SignupComponent {
 
-  constructor(private requestProcessorService: AuthRequestsService, private cookieService: CookiesService, private userAuthService: AuthRequestsService) {
+  constructor(private router: Router, private requestProcessorService: AuthRequestsService, private cookieService: CookiesService, private userAuthService: AuthRequestsService) {
   }
 
   user: User = new User();
@@ -21,8 +22,8 @@ export class SignupComponent {
       .subscribe({
         next: (res) => {
           this.cookieService.setUserCookie(res);
-          console.log(res);
           console.log(this.cookieService.getToken());
+          this.router.navigate(['']);
         },
         error: (err) => {
           console.log(err);

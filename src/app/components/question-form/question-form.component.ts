@@ -9,9 +9,7 @@ import {QuizRequestsService} from '../../services/quiz-requests.service'
 })
 export class QuestionFormComponent {
 
-  constructor(private requestProcessorService: QuizRequestsService) {
-
-  }
+  constructor(private requestProcessorService: QuizRequestsService) {}
 
   question: Question = new Question();
 

@@ -25,8 +25,12 @@ export class QuizRequestsService {
 
   constructor(private http: HttpClient, private router: Router, private cookieService: CookiesService) { }
 
-  public submitSurvey() {
-    return this.http.post<Question[]>(ApplicationConstants.BASE_URL + "/user/generateSurvey", JSON.stringify({category: "INNE", size: 10}), this.postOptions);
+  public getCategories() {
+    return this.http.get<Category[]>(ApplicationConstants.BASE_URL + "/admin/categories", this.postOptions);
+  }
+
+  public submitSurvey(category: Category) {
+    return this.http.post<Question[]>(ApplicationConstants.BASE_URL + "/user/generateSurvey", JSON.stringify(category), this.postOptions);
   }
 
   public submitAnswers(question: Question[]) {

@@ -1,7 +1,7 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
-import { QuizRequestsService } from '../../services/quiz-requests.service';
-import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
-import { Question } from '../../models/Question';
+import {Component, HostListener, OnInit} from '@angular/core';
+import {QuizRequestsService} from '../../services/quiz-requests.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Question} from '../../models/Question';
 
 @Component({
   selector: 'app-survey',
@@ -21,16 +21,12 @@ export class SurveyComponent implements OnInit {
 
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
-      $event.returnValue = true;
-    this.router.navigate(['']);
-
+    $event.returnValue = true;
   }
 
   redirectToNew($event) {
   if(this.routeId != this.arrayContent.length) {
       this.router.navigate(['/survey/',  ++this.routeId]);
-    } else {
-        this.submitButtonAppear = true;
     }
   }
 
@@ -41,6 +37,9 @@ export class SurveyComponent implements OnInit {
       if(Number(id)) {
         this.routeId = Number.parseInt(id);
         this.content = this.arrayContent[this.routeId - 1];
+        if(this.routeId != this.arrayContent.length) {
+          this.submitButtonAppear = true;
+        }
       }
     });
   }
@@ -51,7 +50,6 @@ export class SurveyComponent implements OnInit {
   }
 
   onClickNextButton($event) {
-  console.log(this.arrayContent)
   if(this.routeId == this.arrayContent.length) {
     this.submitButtonAppear = true;
   } else {
@@ -63,13 +61,14 @@ export class SurveyComponent implements OnInit {
   }
 
   highlightAnswer($event) {
-    const value = $event.target.value;
-    this.arrayContent[this.routeId - 1].userAnswer = value;
+    this.arrayContent[this.routeId - 1].userAnswer = $event.target.value;
   }
 
    submitAnswers($event) {
       this.requestProcessorService.submitAnswers(this.arrayContent)
-      .subscribe(success => this.messageResponse = success.toString(), err => this.messageResponse = err.error.text);
+      .subscribe({
+         next: (success) => this.messageResponse = success.toString(),
+         error: (err) => this.messageResponse = err.error.text});
     }
 
 }
