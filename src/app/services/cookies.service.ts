@@ -8,6 +8,7 @@ import {User} from "../models/User";
 export class CookiesService {
   USER_COOKIE_NAME = "USER_TOKEN";
   USER_TOKEN = "";
+  REFRESH_TOKEN="";
 
   constructor(private cookieService: CookieService) {}
 
@@ -28,6 +29,17 @@ export class CookiesService {
       }
     }
     return this.USER_TOKEN;
+  }
+
+  public getRefreshToken() {
+    const userCookie = this.cookieService.get(this.USER_COOKIE_NAME);
+    if (userCookie !== null && userCookie.length !== 0) {
+      let usertoken = JSON.parse(userCookie).refreshToken;
+      if(usertoken !== null) {
+        this.REFRESH_TOKEN = usertoken;
+      }
+    }
+    return this.REFRESH_TOKEN;
   }
 
 }

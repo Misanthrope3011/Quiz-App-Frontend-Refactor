@@ -9,7 +9,7 @@ import {ApplicationConstants} from "../../ApplicationConstants";
 })
 export class AuthRequestsService {
 
-  private postOptions: Object = {
+  private httpOptions: Object = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     }),
@@ -20,12 +20,14 @@ export class AuthRequestsService {
   constructor(private httpClient: HttpClient) { }
 
   public signUp(user: User) {
-    return this.httpClient.post<User>(ApplicationConstants.BASE_URL + "/register", JSON.stringify(user), this.postOptions);
+    return this.httpClient.post<User>(ApplicationConstants.BASE_URL + "/register", JSON.stringify(user), this.httpOptions);
   }
 
   public signIn(user: User) {
-    return this.httpClient.post<User>(ApplicationConstants.BASE_URL + "/authenticate", JSON.stringify(user), this.postOptions);
+    return this.httpClient.post<User>(ApplicationConstants.BASE_URL + "/authenticate", JSON.stringify(user), this.httpOptions);
   }
+
+
 
 }
 
