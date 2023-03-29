@@ -3,6 +3,7 @@ import {User} from '../../models/User';
 import {QuizRequestsService} from '../../services/quiz-requests.service';
 import {CookiesService} from "../../services/cookies.service";
 import {AuthRequestsService} from "../../services/auth-requests.service";
+import {UtilsService} from "../../services/utils.service";
 
 @Component({
   selector: 'app-registration',
@@ -14,7 +15,7 @@ export class RegistrationComponent {
   user: User = new User();
   valueToPass: string = "";
 
-  constructor(private userAuthService: AuthRequestsService, private cookieService: CookiesService) {
+  constructor(private userAuthService: AuthRequestsService, private cookieService: CookiesService, private utilsService: UtilsService) {
   }
 
   register(user: User) {
@@ -22,7 +23,7 @@ export class RegistrationComponent {
       .subscribe({
         next: (res) => {
           this.cookieService.setUserCookie(res);
-          console.log(this.cookieService.getToken());
+          this.utilsService.redirectToQuiz();
         },
         error: (err) => {
           console.log(err);

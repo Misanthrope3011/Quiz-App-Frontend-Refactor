@@ -38,9 +38,6 @@ export class SurveyComponent implements OnInit {
       if (Number(id)) {
         this.routeId = Number.parseInt(id);
         this.content = this.arrayContent[this.routeId - 1];
-        if (this.routeId != this.arrayContent.length) {
-          this.submitButtonAppear = true;
-        }
       }
     });
   }

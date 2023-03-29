@@ -22,7 +22,7 @@ export class CookiesService {
   public getToken() {
     const userCookie = this.cookieService.get(this.USER_COOKIE_NAME);
     if (userCookie !== null && userCookie.length !== 0) {
-      let usertoken = JSON.parse(userCookie).token;
+      let usertoken = JSON.parse(userCookie).accessToken;
       if(usertoken !== null) {
         this.USER_TOKEN = usertoken;
       }

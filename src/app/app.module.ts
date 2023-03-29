@@ -13,6 +13,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { PopupComponent } from './components/popup/popup.component';
 import {AddCategoryComponent} from "./components/add-category/add-category.component";
 import {AuthGuardService} from "./services/authguard.service";
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { QuestionViewComponent } from './components/question-view/question-view.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import {AuthGuardService} from "./services/authguard.service";
     TimerComponent,
     SignupComponent,
     PopupComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    NavigationComponent,
+    QuestionViewComponent
   ],
   imports: [
     BrowserModule,

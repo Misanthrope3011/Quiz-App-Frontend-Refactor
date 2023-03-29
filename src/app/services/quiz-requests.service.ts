@@ -27,7 +27,19 @@ export class QuizRequestsService {
   constructor(private http: HttpClient, private router: Router, private cookieService: CookiesService) { }
 
   public getCategories() {
-    return this.http.get<Category[]>(ApplicationConstants.BASE_URL + "/admin/categories", this.postOptions);
+    return this.http.get<Category[]>(ApplicationConstants.BASE_URL + "/user/categories", this.postOptions);
+  }
+
+  public getQuestionById(id: number) {
+    return this.http.get<Question>(ApplicationConstants.BASE_URL + "/admin/question/" + id, this.postOptions);
+  }
+
+  public getQuestionsByCategory(category: string) {
+    return this.http.get<Question[]>(ApplicationConstants.BASE_URL + "/admin/question/category/" + category, this.postOptions);
+  }
+
+  public getAllQuestions() {
+    return this.http.get<Question[]>(ApplicationConstants.BASE_URL + "/admin/questions", this.postOptions);
   }
 
   public submitSurvey(category: QuizConfig) {
@@ -41,6 +53,10 @@ export class QuizRequestsService {
   public sendQuestionAddRequest(question: Question) {
       return this.http.post<Question>(ApplicationConstants.BASE_URL + "/admin/question/add", JSON.stringify(question), this.postOptions);
    }
+
+  public editQuestionRequest(question: Question) {
+    return this.http.put<Question>(ApplicationConstants.BASE_URL + "/admin/question/" + question.id + "/edit", JSON.stringify(question), this.postOptions);
+  }
 
   public addNewCategory(category: Category) {
     console.log(category)

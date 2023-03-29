@@ -25,7 +25,6 @@ export class MainWindowComponent implements OnInit {
     this.hideStartPopup = true;
     this.showMessageSuccess();
     this.requestProcessor.submitSurvey(config).subscribe(response => {
-      console.log(config);
       this.requestProcessor.setPayload(response);
     });
   }

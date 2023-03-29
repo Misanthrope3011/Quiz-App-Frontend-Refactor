@@ -3,7 +3,7 @@
   <h4>Wybierz kategorie cale te</h4>
   <form (ngSubmit)="startSurvey(quizConfig)">
     <select name="category" class="form-select" id="categorySelect" [(ngModel)]="quizConfig.category">
-      <option  *ngFor="let category of categories; index as i" > {{category.name}} </option>
+      <option  *ngFor="let category of categories; index as i" value="{{category.code}}"> {{category.name}} </option>
     </select>
     <input type="number" min="0" max="30"  name="size" id="size" [(ngModel)]="quizConfig.size">
     <button type="submit">Start Quiz</button>
