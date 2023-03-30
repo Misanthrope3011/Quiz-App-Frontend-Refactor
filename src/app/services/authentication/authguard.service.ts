@@ -4,9 +4,9 @@ import {
   CanActivate,
   ActivatedRouteSnapshot
 } from '@angular/router';
-import {CookiesService} from "./cookies.service";
-import {User} from "../models/User";
-import {Role} from "../models/Role";
+import {CookiesService} from "../cookies.service";
+import {User} from "../../models/User";
+import {Role} from "../../models/Role";
 
 
 @Injectable()

@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
-import {CookiesService} from "./cookies.service";
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {User} from "../models/User";
-import {ApplicationConstants} from "../../ApplicationConstants";
+import {User} from "../../models/User";
+import {ApplicationConstants} from "../../../ApplicationConstants";
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +25,6 @@ export class AuthRequestsService {
   public signIn(user: User) {
     return this.httpClient.post<User>(ApplicationConstants.BASE_URL + "/authenticate", JSON.stringify(user), this.httpOptions);
   }
-
-
 
 }
 

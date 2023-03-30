@@ -1,31 +1,38 @@
-<div class="image-container">
-  <img class="quiz-image" src="https://via.placeholder.com/300x300" alt="Quiz Image">
-</div>
+<div class="container">
+  <div class="image-container">
+    <img class="quiz-image" src="https://via.placeholder.com/300x300" alt="Quiz Image">
+  </div>
   <div class="question">
     {{content.question}}
   </div>
 
 
-<app-timer [answerTime] = content.answerTimeSec  (timeCounter)="redirectToNew($event)"> </app-timer>
+  <app-timer [answerTime]=content.answerTimeSec (timeCounter)="redirectToNew($event)"></app-timer>
 
-<!-- The answer choices -->
-<div class="answer-choices">
-  OdpowiedzA:  <button class="answer-choice-button" (click) = "highlightAnswer($event)" value= {{content.answerA}}>  {{content.answerA}}</button>
-  OdpowiedzB:  <button class="answer-choice-button" (click) = "highlightAnswer($event)" value= {{content.answerB}}>  {{content.answerB}} </button>
-  OdpowiedzC:  <button class="answer-choice-button" (click) = "highlightAnswer($event)" value= {{content.answerC}}>  {{content.answerC}} </button>
-  OdpowiedzD:  <button class="answer-choice-button" (click) = "highlightAnswer($event)" value= {{content.answerD}}>  {{content.answerD}}</button>
-</div>
+  <!-- The answer choices -->
+  <div class="answer-choices">
+    OdpowiedzA:
+    <button class="answer-choice-button" (click)="highlightAnswer($event)" value={{content.answerA}}>  {{content.answerA}}</button>
+    OdpowiedzB:
+    <button class="answer-choice-button" (click)="highlightAnswer($event)" value={{content.answerB}}>  {{content.answerB}} </button>
+    OdpowiedzC:
+    <button class="answer-choice-button" (click)="highlightAnswer($event)" value={{content.answerC}}>  {{content.answerC}} </button>
+    OdpowiedzD:
+    <button class="answer-choice-button" (click)="highlightAnswer($event)" value={{content.answerD}}>  {{content.answerD}}</button>
+    <!-- The navigation buttons -->
 
-<!-- The navigation buttons -->
+    <ng-template [ngIf]="submitButtonAppear == true" [ngIfElse]="nextButton">
+      <div class = "submit-button">
+        <button class="answer-choice-button" (click)="submitAnswers($event)" [routerLink]="['/submit']"> submit</button>
+      </div>
+    </ng-template>
 
-<ng-template [ngIf] = "submitButtonAppear == true" [ngIfElse]="nextButton">
-  <button class="answer-choice-button" (click) = "submitAnswers($event)" [routerLink]="['/submit']"> submit </button>
-</ng-template>
-<ng-template #nextButton>
-  <div class="nav-buttons">
-    <button class="nav-button" (click)="onClickNextButton($event)">Next</button>
+    <ng-template #nextButton>
+      <div class="nav-buttons">
+        <button class="nav-button" (click)="onClickNextButton($event)">Next</button>
+      </div>
+    </ng-template>
+    {{messageResponse}}
   </div>
-</ng-template>
-{{messageResponse}}
-
+</div>
 

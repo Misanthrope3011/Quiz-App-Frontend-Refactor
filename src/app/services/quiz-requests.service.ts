@@ -63,6 +63,11 @@ export class QuizRequestsService {
     return this.http.post<Category>(ApplicationConstants.BASE_URL + "/admin/category/add", JSON.stringify(category), this.postOptions);
   }
 
+  public deleteQuestion(id: number) {
+    return this.http.delete<Question>(ApplicationConstants.BASE_URL + "/admin/question/" + id + "/delete", this.postOptions);
+  }
+
+
   public getPayload(): any {
     return this.payload;
   }

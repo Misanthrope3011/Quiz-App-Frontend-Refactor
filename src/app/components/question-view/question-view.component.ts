@@ -15,12 +15,17 @@ export class QuestionViewComponent implements OnInit {
   constructor(private requestService: QuizRequestsService, private utilsService: UtilsService) {
   }
 
-  editElement(id:number) {
+  editElement(id: number) {
     this.utilsService.redirectTo('question/edit/' + id);
   }
 
   removeElement(id: number) {
-
+    this.requestService.deleteQuestion(id).subscribe({
+      next: (res) => {
+        console.log(res);
+        window.location.reload()
+      }, error: (err) => console.log(err)
+    });
   }
 
   ngOnInit() {

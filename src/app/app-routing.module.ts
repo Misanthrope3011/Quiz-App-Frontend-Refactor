@@ -6,7 +6,7 @@ import {MainWindowComponent} from './components/main-window/main-window.componen
 import {RegistrationComponent} from './components/registration/registration.component'
 import {SignupComponent} from "./components/signup/signup.component";
 import {AddCategoryComponent} from "./components/add-category/add-category.component";
-import {AuthGuardService} from "./services/authguard.service";
+import {AuthGuardService} from "./services/authentication/authguard.service";
 import {QuestionViewComponent} from "./components/question-view/question-view.component";
 
 const routes: Routes = [

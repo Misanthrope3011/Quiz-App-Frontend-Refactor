@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
 import {User} from '../../models/User';
-import {QuizRequestsService} from '../../services/quiz-requests.service';
 import {CookiesService} from "../../services/cookies.service";
-import {AuthRequestsService} from "../../services/auth-requests.service";
+import {AuthRequestsService} from "../../services/authentication/auth-requests.service";
 import {UtilsService} from "../../services/utils.service";
 
 @Component({
