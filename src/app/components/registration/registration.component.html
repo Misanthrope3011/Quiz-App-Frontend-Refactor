@@ -7,22 +7,18 @@
           <div class="card" style="border-radius: 15px;">
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Create an account</h2>
-              <form (ngSubmit) = "register(user)">
+              <form ngNativeValidate (ngSubmit) = "register(user)">
                 <div class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" [(ngModel)]="user.firstName"  name = "name"/>
+                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" [(ngModel)]="user.firstName"  name = "name" required minLength="8" #name="ngModel"/>
                   <label class="form-label" for="form3Example1cg">Your Name</label>
                 </div>
                 <div class="form-outline mb-4">
-                  <input type="text" id="form3Example3cg" class="form-control form-control-lg" [(ngModel)]="user.lastName"  name = "email"/>
-                  <label class="form-label" for="form3Example3cg">Your Email</label>
+                  <input type="text" id="form3Example4cdg1" class="form-control form-control-lg"  [(ngModel)]="user.username" name = "username" required minLength="8" />
+                  <label class="form-label" for="form3Example4cdg1">Username</label>
                 </div>
                 <div class="form-outline mb-4">
-                  <input type="text" id="form3Example4cdg" class="form-control form-control-lg"  [(ngModel)]="user.username" name = "username" />
-                  <label class="form-label" for="form3Example4cdg">Username</label>
-                </div>
-                <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg"  [(ngModel)]="user.password" name = "password" />
-                  <label class="form-label" for="form3Example4cdg">Password</label>
+                  <input type="password" id="form3Example4cdg2" class="form-control form-control-lg"  [(ngModel)]="user.password" name = "password" required minLength="8" />
+                  <label class="form-label" for="form3Example4cdg2">Password</label>
                 </div>
                 <div class="d-flex justify-content-center">
                   <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"> Register </button>
@@ -38,3 +34,4 @@
   </div>
   <app-popup [popupText]="valueToPass"></app-popup>
 </section>
+

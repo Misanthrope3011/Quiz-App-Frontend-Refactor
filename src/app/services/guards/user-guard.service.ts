@@ -15,7 +15,6 @@ export class UserGuardService implements CanActivate {
       tokenPayload.userRoles.filter((str: Role) => {
         return str.role === "USER" || str.role === "ADMIN"
       });
-      console.log(tokenPayload.userRoles);
       return tokenPayload.userRoles.length > 0;
     }
 

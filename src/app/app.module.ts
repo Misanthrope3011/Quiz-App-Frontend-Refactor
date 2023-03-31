@@ -1,4 +1,4 @@
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
@@ -17,6 +17,7 @@ import {NavigationComponent} from './components/navigation/navigation.component'
 import {QuestionViewComponent} from './components/question-view/question-view.component';
 import {UserGuardService} from "./services/guards/user-guard.service";
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,7 @@ import {UserGuardService} from "./services/guards/user-guard.service";
     PopupComponent,
     AddCategoryComponent,
     NavigationComponent,
-    QuestionViewComponent
+    QuestionViewComponent,
   ],
   imports: [
     BrowserModule,
