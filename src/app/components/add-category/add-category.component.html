@@ -1,0 +1,17 @@
+<h2> Add new category</h2>
+
+<form (ngSubmit) = "createCategory(category)">
+  <div class="form-group">
+    <label for="Category name">Category name</label>
+    <input type="text" class="form-control" id="Category name" placeholder="code"  [(ngModel)]="category.name" name="answer A" required>
+  </div>
+  <div class="form-group">
+    <label for="Category code">Category code</label>
+    <input type="text" class="form-control" id="Category code" placeholder="code"  [(ngModel)]="category.code" name="answer A" required>
+  </div>
+  <div class="form-group">
+    <label for= "Category description">Category description</label>
+    <input type="text" class="form-control" id="Category description" placeholder="description"  [(ngModel)]="category.description" name="answer A" required>
+  </div>
+  <button type="submit" class="btn btn-primary" >Submit</button>
+</form>

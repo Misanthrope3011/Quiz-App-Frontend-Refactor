@@ -39,7 +39,9 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 60px;
+    height: 50px;
+    padding: 0 0 16px;
+    margin: 0 0 16px 0;
     display: flex;
     align-items: center;
     background-color: #1976d2;
@@ -64,15 +66,6 @@
   .toolbar #twitter-logo:hover,
   .toolbar #youtube-logo:hover {
     opacity: 0.8;
-  }
-
-  .content {
-    display: flex;
-    margin: 65px auto 32px;
-    padding: 0 16px;
-    max-width: 960px;
-    flex-direction: column;
-    align-items: center;
   }
 
   svg.material-icons {
@@ -102,7 +95,7 @@
     background-color: #fafafa;
     height: 40px;
     width: 200px;
-    margin: 0 8px 16px;
+    margin: 0 32px 32px 32px;
     padding: 16px;
     display: flex;
     flex-direction: row;
@@ -300,22 +293,38 @@
       visibility: hidden;
     }
   }
+
+  /* Position the div in the top right corner */
+  .user-info {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    background-color: #eee;
+  }
+
 </style>
 
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
+<ng-template [ngIf]="userCookiePresent == true">
+  <div class="user-info">
+    <p>Username: <span id="username"> {{user.username}}</span></p>
+    <a class = "logout" (click) = "logout()" routerLink="/signin"> Logout </a>
+  </div>
+</ng-template>
+
   <img
     width="40"
     alt="Angular Logo"
     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
   />
 
+
 </div>
 
-<div class="content" role="main">
-  <h2>Welcome to survey app!</h2>
-  <button (click)="startSurvey()">Start Survey</button>
-</div>
+<router-outlet></router-outlet>
+
 
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
@@ -325,5 +334,3 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<router-outlet></router-outlet>

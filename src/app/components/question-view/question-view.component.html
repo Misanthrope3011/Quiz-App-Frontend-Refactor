@@ -1,0 +1,29 @@
+<div class="questionView">
+  <h3>Questions available</h3>
+  <div class="table-flex">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th scope="col">Question</th>
+        <th scope="col">Odpowiedz A</th>
+        <th scope="col">Odpowiedz B</th>
+        <th scope="col">Odpowiedz C</th>
+        <th scope="col">Odpowiedz D</th>
+        <th scope="col">AnswerTime</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let question of questions; index as i">
+        <th scope="row">{{question.question}}</th>
+        <td>{{question.answerA}}</td>
+        <td>{{question.answerB}}</td>
+        <td>{{question.answerC}}</td>
+        <td>{{question.answerD}}</td>
+        <td>{{question.answerTimeSec}}</td>
+        <td><button (click)="removeElement(question.id)"> Remove </button></td>
+        <td><button (click)="editElement(question.id)"> Edit </button> </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

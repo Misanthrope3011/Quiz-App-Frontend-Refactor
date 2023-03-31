@@ -1,31 +1,38 @@
-import { Component, ɵɵsetComponentScope } from '@angular/core';
-import { RequestProcessorService } from './request-processor.service';
-import {Router} from '@angular/router';
-import {Question} from './Question';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {CookiesService} from "./services/cookies.service";
+import {User} from "./models/User";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  
+export class AppComponent implements OnInit, OnChanges{
+
+  userCookiePresent: boolean;
+  user: User = new User();
+
+  constructor(private cookieService: CookiesService, private router: Router) {}
+
+  ngOnInit() {
+    this.userCookiePresent = this.cookieService.getUserCookie() !== null;
+    if(this.userCookiePresent) {
+      this.user = this.cookieService.getUserCookie();
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+
+  }
+
+  logout() {
+    this.cookieService.logout()
+    this.router.navigate(['signin']);
+  }
+
+
   title = 'Survey_New';
-  message = 'Hello from Parent Component';
-
-  content: Question[] = [];
-
-
-  constructor(private requestProcessor: RequestProcessorService, private router: Router) {
-
-  }
-
-  startSurvey() {
-    this.requestProcessor.submitSurvey().subscribe(response => { 
-    this.requestProcessor.setPayload(response);
-    this.router.navigate(['/survey/start']);
-   });
-  }
 
 }
 
