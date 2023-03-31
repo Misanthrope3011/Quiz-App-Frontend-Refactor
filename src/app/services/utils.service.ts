@@ -19,7 +19,7 @@ export class UtilsService {
   }
 
   showMessageSuccess() {
-    timer(3000).subscribe(err => this.router.navigate(['/survey/1']));
+    return timer(3000);
   }
 
 }

@@ -20,7 +20,7 @@ export class MainWindowComponent implements OnInit {
   quizConfig: QuizConfig = new QuizConfig();
   error: string;
 
-  constructor(private requestProcessor: QuizRequestsService, private utilsService: UtilsService) {
+  constructor(private requestProcessor: QuizRequestsService, private utilsService: UtilsService, private router: Router) {
   }
 
   startSurvey(config: QuizConfig) {
@@ -31,7 +31,9 @@ export class MainWindowComponent implements OnInit {
         if (this.requestProcessor.getPayload().length < 2) {
 
         } else {
-          this.utilsService.showMessageSuccess();
+          this.utilsService.showMessageSuccess().subscribe(res => {
+             this.router.navigate(['/survey/1'])
+          });
         }
       }, error: (error) => {
         console.log(error)

@@ -2,6 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {QuizRequestsService} from '../../services/quiz-requests.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Question} from '../../models/Question';
+import {UtilsService} from "../../services/utils.service";
 
 @Component({
   selector: 'app-survey',
@@ -17,17 +18,15 @@ export class SurveyComponent implements OnInit {
   submitButtonAppear: boolean = false;
   messageResponse: string;
 
-  constructor(private requestProcessorService: QuizRequestsService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private requestProcessorService: QuizRequestsService, private activatedRoute: ActivatedRoute, private router: Router,
+              private utilsService: UtilsService) {
   }
 
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
-    // Redirect to the main page if the user clicks "Leave"
-    setTimeout(function() {
-      $event.preventDefault()
-      $event.returnValue = 'Are you sure you want to leave?'
-        window.location.href = 'http://localhost:4200/quiz';
-    }, 100);
+    $event.preventDefault()
+    $event.returnValue = true;
+
   }
 
 
@@ -39,10 +38,11 @@ export class SurveyComponent implements OnInit {
 
   ngOnInit(): void {
     this.arrayContent = this.requestProcessorService.getPayload();
+
     this.activatedRoute.params.subscribe(err => {
       const id = this.activatedRoute.snapshot.url[this.activatedRoute.snapshot.url.length - 1].path;
       if(this.arrayContent === null) {
-        this.router.navigate(['quiz'])
+        this.router.navigate(['quiz']);
       }
       if (Number(id)) {
         if(Number(id) < this.routeId + 1) {
@@ -50,7 +50,11 @@ export class SurveyComponent implements OnInit {
         } else {
           this.routeId = Number.parseInt(id);
         }
-        this.content = this.arrayContent[this.routeId - 1];
+        if(typeof this.arrayContent === "undefined") {
+          this.router.navigate(['quiz']);
+        } else {
+          this.content = this.arrayContent[this.routeId - 1];
+        }
       }
     });
 
@@ -78,7 +82,11 @@ export class SurveyComponent implements OnInit {
   submitAnswers($event) {
     this.requestProcessorService.submitAnswers(this.arrayContent)
       .subscribe({
-        next: (success) => this.messageResponse = success.toString(),
+        next: (success) => { this.messageResponse = success.toString()
+          this.utilsService.showMessageSuccess().subscribe(res => {
+            this.router.navigate(['quiz'])
+          });
+        },
         error: (err) => this.messageResponse = err.error.text
       });
   }
