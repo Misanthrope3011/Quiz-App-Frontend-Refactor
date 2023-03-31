@@ -22,8 +22,14 @@ export class SurveyComponent implements OnInit {
 
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
-    $event.returnValue = true;
+    // Redirect to the main page if the user clicks "Leave"
+    setTimeout(function() {
+      $event.preventDefault()
+      $event.returnValue = 'Are you sure you want to leave?'
+        window.location.href = 'http://localhost:4200/quiz';
+    }, 100);
   }
+
 
   redirectToNew($event) {
     if (this.routeId != this.arrayContent.length) {
@@ -35,11 +41,19 @@ export class SurveyComponent implements OnInit {
     this.arrayContent = this.requestProcessorService.getPayload();
     this.activatedRoute.params.subscribe(err => {
       const id = this.activatedRoute.snapshot.url[this.activatedRoute.snapshot.url.length - 1].path;
+      if(this.arrayContent === null) {
+        this.router.navigate(['quiz'])
+      }
       if (Number(id)) {
-        this.routeId = Number.parseInt(id);
+        if(Number(id) < this.routeId + 1) {
+          this.router.navigate(['/survey/', this.routeId]);
+        } else {
+          this.routeId = Number.parseInt(id);
+        }
         this.content = this.arrayContent[this.routeId - 1];
       }
     });
+
   }
 
   selectedAnswerChoiceButton($event: MouseEvent) {
@@ -48,15 +62,14 @@ export class SurveyComponent implements OnInit {
   }
 
   onClickNextButton($event) {
-    if (this.routeId == this.arrayContent.length) {
+    if (this.routeId == this.arrayContent.length - 1) {
       this.submitButtonAppear = true;
-    } else {
-      this.routeId = this.routeId + 1;
-      console.log("Clicked" + this.routeId)
-      this.router.navigate(['/survey/', this.routeId]);
     }
 
+    this.routeId = this.routeId + 1;
+    this.router.navigate(['/survey/', this.routeId]);
   }
+
 
   highlightAnswer($event) {
     this.arrayContent[this.routeId - 1].userAnswer = $event.target.value;

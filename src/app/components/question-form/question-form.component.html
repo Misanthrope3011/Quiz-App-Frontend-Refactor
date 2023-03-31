@@ -34,6 +34,11 @@
     <input type="number" min = "1" max = "360" class="form-control" id="answerTimeSec" placeholder="30"[(ngModel)]="question.answerTimeSec"  name="answerTimeSec" >
   </div>
   <div class="form-group">
+    <label for="image">Image</label>
+    <input type="file" class="form-control" name = "image" id="image" (change)="convertToByteArray($event)">
+  </div>
+
+  <div class="form-group">
   <button type="submit" class="btn btn-primary" >Submit</button>
   </div>
 </form>

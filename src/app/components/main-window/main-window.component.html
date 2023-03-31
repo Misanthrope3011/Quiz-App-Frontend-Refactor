@@ -5,12 +5,16 @@
     <select name="category" class="form-select" id="categorySelect" [(ngModel)]="quizConfig.category">
       <option  *ngFor="let category of categories; index as i" value="{{category.code}}"> {{category.name}} </option>
     </select>
-    <input type="number" min="0" max="30"  name="size" id="size" [(ngModel)]="quizConfig.size">
+    <input type="number" min="2" max="30"  name="size" id="size" [(ngModel)]="quizConfig.size">
     <button type="submit">Start Quiz</button>
   </form>
 </div>
 
-<ng-template [ngIf]="hideStartPopup == true">
+
+<ng-template [ngIf]="hideStartPopup == true && error === null">
   <p>tutaj sie zaczyna zabawa</p>
   Za chwile zostaniesz przekierowany do pierwszego pytania
+</ng-template>
+<ng-template [ngIf]="error !== null" class = "noCategory">
+  {{error}}
 </ng-template>

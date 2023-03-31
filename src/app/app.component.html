@@ -299,7 +299,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    padding: 10px;
+    margin: 10px;
     background-color: #eee;
   }
 
@@ -309,8 +309,8 @@
 <div class="toolbar" role="banner">
 <ng-template [ngIf]="userCookiePresent == true">
   <div class="user-info">
-    <p>Username: <span id="username"></span></p>
-    <p>Password: <span id="password"></span></p>
+    <p>Username: <span id="username"> {{user.username}}</span></p>
+    <a class = "logout" (click) = "logout()" routerLink="/signin"> Logout </a>
   </div>
 </ng-template>
 

@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Router} from "@angular/router";
+import {timer} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,10 @@ export class UtilsService {
 
   redirectToQuiz() {
    return this.router.navigate(['quiz']);
+  }
+
+  showMessageSuccess() {
+    timer(3000).subscribe(err => this.router.navigate(['/survey/1']));
   }
 
 }

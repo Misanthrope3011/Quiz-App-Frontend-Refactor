@@ -7,10 +7,10 @@ import {AuthRequestsService} from "../../services/authentication/auth-requests.s
 
 @Component({
   selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.scss']
 })
-export class SignupComponent {
+export class SigninComponent {
 
   constructor(private router: Router, private quizRequestsService: AuthRequestsService, private cookieService: CookiesService, private userAuthService: AuthRequestsService,
               private utilsService: UtilsService) {

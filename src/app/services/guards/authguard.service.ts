@@ -1,11 +1,6 @@
 import {Injectable} from '@angular/core';
-import {
-  Router,
-  CanActivate,
-  ActivatedRouteSnapshot
-} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router} from '@angular/router';
 import {CookiesService} from "../cookies.service";
-import {User} from "../../models/User";
 import {Role} from "../../models/Role";
 
 
@@ -18,7 +13,7 @@ export class AuthGuardService implements CanActivate {
       const tokenPayload = this.auth.getUserCookie();
       console.log(tokenPayload)
       tokenPayload.userRoles.filter((str: Role) => {
-        return str.role === "XDD"
+        return str.role === "ADMIN"
       });
 
       return tokenPayload.userRoles.length > 0;

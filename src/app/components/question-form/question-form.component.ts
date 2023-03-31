@@ -12,10 +12,13 @@ export class QuestionFormComponent implements OnInit {
 
   question: Question = new Question();
 
+  ngOnInit() {
+  }
+
   constructor(private requestProcessorService: QuizRequestsService, private activatedRoute: ActivatedRoute) {
     this.activatedRoute.params.subscribe(err => {
       const id = this.getLastPartFromPath();
-      if(Number(id)) {
+      if (Number(id)) {
         this.requestProcessorService.getQuestionById(Number(id)).subscribe(res => {
           this.question = res;
         })
@@ -23,14 +26,12 @@ export class QuestionFormComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
-
   sendQuestion(question: Question) {
-    if(Number(this.getLastPartFromPath())) {
+    if (Number(this.getLastPartFromPath())) {
       this.requestProcessorService.editQuestionRequest(question)
         .subscribe(res => console.log(res));
     } else {
+      console.log(this.question.image);
       this.requestProcessorService.sendQuestionAddRequest(question)
         .subscribe(res => console.log(res));
     }
@@ -40,5 +41,14 @@ export class QuestionFormComponent implements OnInit {
     return this.activatedRoute.snapshot.url[this.activatedRoute.snapshot.url.length - 1].path;
   }
 
+  convertToByteArray(event) {
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(event.target.files[0]);
+
+    reader.onload = () => {
+      this.question.image = new Uint8Array(reader.result as ArrayBuffer);
+    };
+
+  }
 
 }

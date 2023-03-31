@@ -14,7 +14,8 @@ export class SampleInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError(
         error => {
-          return next.handle(request);
+          console.log(error)
+          return next.handle(error);
         }
       ));
   }

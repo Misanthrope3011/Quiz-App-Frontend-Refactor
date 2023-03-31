@@ -9,8 +9,8 @@ export class Question {
     answerD: string;
     question: string;
     correctAnswer: string;
-    category: Category;
-    image: string;
+    category: Category = new Category();
+    image: Uint8Array;
     userAnswer: string;
     answerTimeSec: number;
 

@@ -5,6 +5,7 @@ import {Question} from '../../models/Question';
 import {timer} from 'rxjs';
 import {Category} from "../../models/Category";
 import {QuizConfig} from "../../models/QuizConfig";
+import {UtilsService} from "../../services/utils.service";
 
 @Component({
   selector: 'app-main-window',
@@ -17,15 +18,25 @@ export class MainWindowComponent implements OnInit {
   hideStartPopup = false;
   categories: Category[];
   quizConfig: QuizConfig = new QuizConfig();
+  error: string;
 
-  constructor(private requestProcessor: QuizRequestsService, private router: Router) {
+  constructor(private requestProcessor: QuizRequestsService, private utilsService: UtilsService) {
   }
 
   startSurvey(config: QuizConfig) {
     this.hideStartPopup = true;
-    this.showMessageSuccess();
-    this.requestProcessor.submitSurvey(config).subscribe(response => {
-      this.requestProcessor.setPayload(response);
+    this.requestProcessor.submitSurvey(config).subscribe({
+      next: (response) => {
+        this.requestProcessor.setPayload(response);
+        if (this.requestProcessor.getPayload().length < 2) {
+
+        } else {
+          this.utilsService.showMessageSuccess();
+        }
+      }, error: (error) => {
+        console.log(error)
+        this.error = error.error;
+      }
     });
   }
 
@@ -39,8 +50,5 @@ export class MainWindowComponent implements OnInit {
     })
   }
 
-  showMessageSuccess() {
-    timer(3000).subscribe(err => this.router.navigate(['/survey/1']));
-  }
 
 }
