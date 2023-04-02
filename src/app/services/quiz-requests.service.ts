@@ -6,6 +6,8 @@ import {Question} from '../models/Question';
 import {CookiesService} from "./cookies.service";
 import {Category} from "../models/Category";
 import {QuizConfig} from "../models/QuizConfig";
+import {PasswordChange} from "../models/PasswordChange";
+import {User} from "../models/User";
 
 
 @Injectable({
@@ -66,6 +68,11 @@ export class QuizRequestsService {
   public deleteQuestion(id: number) {
     return this.http.delete<Question>(ApplicationConstants.BASE_URL + "/admin/question/" + id + "/delete", this.postOptions);
   }
+
+  public changePasswordRequest(payload: PasswordChange) {
+    return this.http.post<User>(ApplicationConstants.BASE_URL + "/user/passwordChange/", payload, this.postOptions);
+  }
+
 
 
   public getPayload(): any {

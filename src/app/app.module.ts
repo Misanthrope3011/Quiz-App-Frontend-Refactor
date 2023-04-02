@@ -16,6 +16,7 @@ import {AuthGuardService} from "./services/guards/authguard.service";
 import {NavigationComponent} from './components/navigation/navigation.component';
 import {QuestionViewComponent} from './components/question-view/question-view.component';
 import {UserGuardService} from "./services/guards/user-guard.service";
+import { PasswordChangeComponent } from './components/password-change/password-change.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {UserGuardService} from "./services/guards/user-guard.service";
     AddCategoryComponent,
     NavigationComponent,
     QuestionViewComponent,
+    PasswordChangeComponent,
   ],
   imports: [
     BrowserModule,
