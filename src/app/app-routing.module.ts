@@ -9,6 +9,7 @@ import {AddCategoryComponent} from "./components/add-category/add-category.compo
 import {AuthGuardService} from "./services/guards/authguard.service";
 import {QuestionViewComponent} from "./components/question-view/question-view.component";
 import {UserGuardService} from "./services/guards/user-guard.service";
+import {PasswordChangeComponent} from "./components/password-change/password-change.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'signin', pathMatch: 'full'},
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'category/add', component: AddCategoryComponent, canActivate: [UserGuardService]},
   {path: 'signup', component: RegistrationComponent},
   {path: 'quiz', component: MainWindowComponent, canActivate: [AuthGuardService]},
-  {path: 'questions', component: QuestionViewComponent, canActivate: [UserGuardService]}
+  {path: 'questions', component: QuestionViewComponent, canActivate: [UserGuardService]},
+  {path: 'passwordChange', component: PasswordChangeComponent, canActivate: [UserGuardService]}
 ];
 
 @NgModule({
